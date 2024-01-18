@@ -1,0 +1,42 @@
+﻿@using Jof.Models
+@model List<Fruit>
+@{
+	int count = 0;
+}
+
+<div class="container">
+	<div class="container-fluid">
+		<h1 class="h3 mb-4 text-gray-800">Fruits</h1>
+		<a class="btn btn-primary" style="margin-left:95%" asp-action="Create" asp-controller="Fruit">Create</a>
+	</div>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">#No</th>
+				<th scope="col">Name</th>
+				<th scope="col">Description</th>
+				<th scope="col">Image</th>
+				<th scope="col">action</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach(var item in Model)
+			{
+				count++;
+			<tr>
+				<th scope="row">@count</th>
+				<td>@item.Name</td>
+				<td>@item.Description</td>
+				<td>
+						<img style="width:100px" src="~/Upload/FruitImage/@item.ImgUrl" />
+				</td>
+				<td>
+						<a class="btn btn-secondary" asp-action="Update" asp-controller="Fruit" asp-route-id="@item.Id">Update</a>
+						<a class="btn btn-warning" asp-action="Delete" asp-controller="Fruit" asp-route-id="@item.Id">Delete</a>
+				</td>
+			</tr>
+			}
+		</tbody>
+	</table>
+</div>
